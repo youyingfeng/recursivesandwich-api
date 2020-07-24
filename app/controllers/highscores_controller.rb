@@ -24,6 +24,7 @@ class HighscoresController < ApplicationController
         render status: 201                                # Highscore created
       else
         render status: 500                                # server issue if cannot post
+      end
     else
       render status: 401                                  # Unauthorised
     end
