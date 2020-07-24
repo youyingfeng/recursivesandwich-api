@@ -4,6 +4,7 @@ import requests
 # print(req.text)
 
 post = requests.post('http://localhost:3000/highscores',
+                      headers = {'User-Agent': 'The Tower - Game Clien'},
                       data = {'user': 'lmao', 'time': 95})
-print(post.text)
+print(post.status_code)
 print('Complete!')

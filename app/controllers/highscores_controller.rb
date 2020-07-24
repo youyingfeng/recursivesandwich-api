@@ -17,8 +17,15 @@ class HighscoresController < ApplicationController
 
   def create_new_highscore
     # posts the new highscore list
-    highscore = Highscore.new(user: params[:user], 
-                              time: params[:time])
-    highscore.save
+    if request.user_agent == 'The Tower - Game Client'
+      highscore = Highscore.new(user: params[:user], 
+                                time: params[:time])
+      if highscore.save
+        render status: 201                                # Highscore created
+      else
+        render status: 500                                # server issue if cannot post
+    else
+      render status: 401                                  # Unauthorised
+    end
   end
 end
